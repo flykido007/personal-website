@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { RESUME_PDF } from '../../data/resume';
 
 const AnimatedCounter = ({ end, duration = 2, suffix = "" }) => {
     const [count, setCount] = useState(0);
@@ -51,25 +52,18 @@ const DesktopScreenContent = () => {
 
     return (
         <div className="absolute inset-6 flex items-center justify-between gap-12 px-8" onMouseMove={handleMouseMove}>
-            {/* Toronto Skyline Background - Right 30% */}
             <div className="absolute right-0 top-0 bottom-0 w-[40%] overflow-hidden pointer-events-none -z-10">
                 <div
                     className="absolute inset-0 bg-cover bg-center opacity-60 mix-blend-loud-light"
                     style={{ backgroundImage: "url('/toronto-skyline.png')" }}
                 ></div>
-                {/* Gradient Mask to Fade Left into Dark Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-[#020617] via-transparent to-transparent"></div>
-                {/* Gradient Mask Vertical */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-[#020617]"></div>
             </div>
-            {/* Left Side - Content */}
             <div className="flex-1 flex flex-col justify-center space-y-5">
-                {/* Title */}
                 <div className="text-slate-400 text-sm font-mono tracking-widest uppercase">
                     AI Cloud Engineer & SRE
                 </div>
-
-                {/* Greeting & Name */}
                 <div className="space-y-2">
                     <h2 className="text-3xl font-light text-white font-mono">
                         Hello I'm
@@ -79,7 +73,6 @@ const DesktopScreenContent = () => {
                         onMouseEnter={() => setIsHovered(true)}
                         onMouseLeave={() => setIsHovered(false)}
                     >
-                        {/* Smooth Block Highlight Overlay - Precise Anime Style */}
                         <motion.div
                             className="absolute -inset-x-2 inset-y-0 bg-[#10b981] z-0"
                             initial={{ scaleX: 0 }}
@@ -94,8 +87,6 @@ const DesktopScreenContent = () => {
                         </h1>
                     </div>
                 </div>
-
-                {/* Full Summary */}
                 <p className="text-slate-300 text-sm leading-relaxed max-w-lg font-mono">
                     Helping businesses leverage AI and cloud infrastructure to automate workflows, reduce operational costs, and accelerate time-to-market.
                     <br /><br />
@@ -109,11 +100,9 @@ const DesktopScreenContent = () => {
                         className="inline-block w-[3.5px] h-[1.2em] ml-2 translate-y-[0.25em] bg-emerald-400"
                     />
                 </p>
-
-                {/* Resume & Socials */}
                 <div className="flex items-center gap-6">
                     <a
-                        href="https://drive.google.com/file/d/1Dr2pXZ_IN8C1XubkUKRR20xb0zu1cmuP/view?usp=drive_link"
+                        href={RESUME_PDF}
                         target="_blank"
                         className="inline-flex items-center gap-2 px-5 py-2.5 bg-transparent border-2 border-emerald-400 text-emerald-400 rounded-lg font-semibold text-xs font-mono hover:bg-emerald-400 hover:text-slate-900 transition-all duration-300 uppercase tracking-wider"
                     >
@@ -122,8 +111,6 @@ const DesktopScreenContent = () => {
                         </svg>
                         VIEW CV
                     </a>
-
-                    {/* Social Icons */}
                     <div className="flex items-center gap-4">
                         {[
                             { href: "https://x.com/rishabh_280497", icon: <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg> },
@@ -147,12 +134,8 @@ const DesktopScreenContent = () => {
                     </div>
                 </div>
             </div>
-
-            {/* Right Side - Profile Picture with Stats */}
             <div className="flex flex-col items-center gap-6">
-                {/* Profile Picture with Cinematic Radial Ripple */}
                 <div className="relative flex items-center justify-center">
-                    {/* Ripple Continuum - High Intensity Waves */}
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible">
                         {[...Array(15)].map((_, i) => (
                             <motion.div
@@ -168,13 +151,11 @@ const DesktopScreenContent = () => {
                                     duration: 3,
                                     repeat: Infinity,
                                     delay: (i / 15) * 3,
-                                    ease: [0.11, 0, 0.5, 0] // Natural wave expansion curve
+                                    ease: [0.11, 0, 0.5, 0]
                                 }}
                             />
                         ))}
                     </div>
-
-                    {/* Profile Picture Container */}
                     <div className="relative z-10 w-72 h-72 rounded-full overflow-hidden border-4 border-emerald-400 shadow-[0_0_60px_rgba(16,185,129,0.4)]">
                         <img
                             src="https://zhdgql66cifrjlez.public.blob.vercel-storage.com/profile.jpg"
@@ -183,12 +164,8 @@ const DesktopScreenContent = () => {
                         />
                         <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent"></div>
                     </div>
-
-                    {/* Stationary Core Base Aura */}
                     <div className="absolute w-72 h-72 rounded-full bg-emerald-400/20 blur-3xl -z-10" />
                 </div>
-
-                {/* Stats - Below Picture */}
                 <div className="flex gap-6">
                     <div className="text-center">
                         <div className="text-3xl font-bold text-white font-mono">
