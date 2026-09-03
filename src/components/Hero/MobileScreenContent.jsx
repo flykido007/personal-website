@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { RESUME_PDF } from '../../data/resume';
 
-// Mobile-specific animated counter
 const AnimatedCounter = ({ end, duration = 2, suffix = "" }) => {
     const [count, setCount] = useState(0);
 
@@ -13,7 +13,7 @@ const AnimatedCounter = ({ end, duration = 2, suffix = "" }) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
             setCount(Math.floor(progress * end));
-            if (progress < 1) animationFrame = requestAnimationFrame(animate);
+            if (progress < 1) animationFrame = requestAnimationFrame(animationFrame);
         };
 
         animationFrame = requestAnimationFrame(animate);
@@ -48,13 +48,8 @@ const MobileScreenContent = () => {
             className="flex items-center h-full w-full overflow-hidden relative"
             onMouseMove={handleMouseMove}
         >
-            {/* Background Gradient (Mobile) */}
             <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] pointer-events-none -z-10" />
-
-            {/* Container - Fixed spacing for Mobile */}
             <div className="w-full h-full flex flex-col items-center justify-between px-4 pt-8 pb-8 overflow-hidden">
-
-                {/* 1. Header Group */}
                 <div className="text-center space-y-1 shrink-0">
                     <div className="text-zinc-400 text-[10px] font-mono tracking-[0.2em] uppercase mb-1">
                         AI Cloud Engineer & SRE
@@ -68,7 +63,6 @@ const MobileScreenContent = () => {
                         onMouseLeave={() => setIsHovered(false)}
                         onClick={() => setIsHovered(!isHovered)}
                     >
-                        {/* Smooth Block Highlight Overlay */}
                         <motion.div
                             className="absolute -inset-x-2 inset-y-0 bg-[#10b981] z-0"
                             initial={{ scaleX: 0 }}
@@ -82,8 +76,6 @@ const MobileScreenContent = () => {
                         </h1>
                     </div>
                 </div>
-
-                {/* 2. Profile & Stats (Mobile Version) */}
                 <div className="w-full shrink-0 flex flex-col items-center gap-2 py-0">
                     <motion.div
                         className="relative w-32 h-32"
@@ -91,7 +83,6 @@ const MobileScreenContent = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ duration: 0.5 }}
                     >
-                        {/* Ripple Continuum */}
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible">
                             {[...Array(15)].map((_, i) => (
                                 <motion.div
@@ -112,8 +103,6 @@ const MobileScreenContent = () => {
                                 />
                             ))}
                         </div>
-
-                        {/* Profile Picture */}
                         <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]">
                             <img
                                 src="https://zhdgql66cifrjlez.public.blob.vercel-storage.com/profile.jpg"
@@ -123,8 +112,6 @@ const MobileScreenContent = () => {
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent"></div>
                         </div>
                     </motion.div>
-
-                    {/* Mobile Stats */}
                     <div className="flex gap-4">
                         <div className="text-center">
                             <div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={5} /></div>
@@ -140,8 +127,6 @@ const MobileScreenContent = () => {
                         </div>
                     </div>
                 </div>
-
-                {/* 3. Bio (Mobile Version - 17px) */}
                 <div className="max-w-xl text-left shrink-0">
                     <div className="text-zinc-300 text-[17px] leading-tight block mt-2 mb-2">
                         Helping businesses leverage AI and cloud infrastructure to automate workflows, reduce operational costs, and accelerate time-to-market.
@@ -154,11 +139,9 @@ const MobileScreenContent = () => {
                         />
                     </div>
                 </div>
-
-                {/* 4. Buttons */}
                 <div className="flex flex-col items-center gap-3 w-full shrink-0">
                     <motion.a
-                        href="https://drive.google.com/file/d/1Dr2pXZ_IN8C1XubkUKRR20xb0zu1cmuP/view?usp=drive_link"
+                        href={RESUME_PDF}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="group relative px-6 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/50 rounded-lg overflow-hidden transition-all duration-300 flex items-center gap-2"
@@ -170,7 +153,6 @@ const MobileScreenContent = () => {
                             <span className="text-base">⬇</span> VIEW CV
                         </span>
                     </motion.a>
-
                     <div className="flex items-center gap-4">
                         {socialLinks.map((link, index) => (
                             <motion.a
@@ -187,7 +169,6 @@ const MobileScreenContent = () => {
                         ))}
                     </div>
                 </div>
-
             </div>
         </div>
     );
