@@ -13,7 +13,7 @@ const AnimatedCounter = ({ end, duration = 2, suffix = "" }) => {
             if (!startTime) startTime = timestamp;
             const progress = Math.min((timestamp - startTime) / (duration * 1000), 1);
             setCount(Math.floor(progress * end));
-            if (progress < 1) animationFrame = requestAnimationFrame(animationFrame);
+            if (progress < 1) animationFrame = requestAnimationFrame(animate);
         };
 
         animationFrame = requestAnimationFrame(animate);
@@ -44,87 +44,33 @@ const MobileScreenContent = () => {
     ];
 
     return (
-        <div
-            className="flex items-center h-full w-full overflow-hidden relative"
-            onMouseMove={handleMouseMove}
-        >
+        <div className="flex items-center h-full w-full overflow-hidden relative" onMouseMove={handleMouseMove}>
             <div className="absolute inset-0 bg-gradient-to-b from-[#020617] via-transparent to-[#020617] pointer-events-none -z-10" />
             <div className="w-full h-full flex flex-col items-center justify-between px-4 pt-8 pb-8 overflow-hidden">
                 <div className="text-center space-y-1 shrink-0">
-                    <div className="text-zinc-400 text-[10px] font-mono tracking-[0.2em] uppercase mb-1">
-                        AI Cloud Engineer & SRE
-                    </div>
-                    <h2 className="text-lg font-light text-white font-mono">
-                        Hello I'm
-                    </h2>
-                    <div
-                        className="relative inline-block cursor-pointer select-none group"
-                        onMouseEnter={() => setIsHovered(true)}
-                        onMouseLeave={() => setIsHovered(false)}
-                        onClick={() => setIsHovered(!isHovered)}
-                    >
-                        <motion.div
-                            className="absolute -inset-x-2 inset-y-0 bg-[#10b981] z-0"
-                            initial={{ scaleX: 0 }}
-                            animate={{ scaleX: isHovered ? 1 : 0 }}
-                            transition={{ duration: 0.25, ease: [0.19, 1, 0.22, 1] }}
-                            style={{ originX: 0 }}
-                        />
-                        <h1 className={`relative z-10 text-3xl font-bold font-mono transition-colors duration-200 leading-tight ${isHovered ? 'text-black' : 'text-emerald-400'}`}>
-                            Rishabh Singh<br />
-                            Thakur
-                        </h1>
+                    <div className="text-zinc-400 text-[10px] font-mono tracking-[0.2em] uppercase mb-1">AI Cloud Engineer & SRE</div>
+                    <h2 className="text-lg font-light text-white font-mono">Hello I'm</h2>
+                    <div className="relative inline-block cursor-pointer select-none group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} onClick={() => setIsHovered(!isHovered)}>
+                        <motion.div className="absolute -inset-x-2 inset-y-0 bg-[#10b981] z-0" initial={{ scaleX: 0 }} animate={{ scaleX: isHovered ? 1 : 0 }} transition={{ duration: 0.25, ease: [0.19, 1, 0.22, 1] }} style={{ originX: 0 }} />
+                        <h1 className={`relative z-10 text-3xl font-bold font-mono transition-colors duration-200 leading-tight ${isHovered ? 'text-black' : 'text-emerald-400'}`}>Rishabh Singh<br />Thakur</h1>
                     </div>
                 </div>
                 <div className="w-full shrink-0 flex flex-col items-center gap-2 py-0">
-                    <motion.div
-                        className="relative w-32 h-32"
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.5 }}
-                    >
+                    <motion.div className="relative w-32 h-32" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.5 }}>
                         <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-visible">
                             {[...Array(15)].map((_, i) => (
-                                <motion.div
-                                    key={`wave-${i}`}
-                                    className="absolute rounded-full bg-emerald-500/10 border-2 border-emerald-400/40 blur-xl shadow-[0_0_50px_rgba(16,185,129,0.3)]"
-                                    style={{ width: '100%', height: '100%' }}
-                                    initial={{ scale: 0, opacity: 0 }}
-                                    animate={{
-                                        scale: 1.1,
-                                        opacity: [0, 0.8, 0]
-                                    }}
-                                    transition={{
-                                        duration: 3,
-                                        repeat: Infinity,
-                                        delay: (i / 15) * 3,
-                                        ease: [0.11, 0, 0.5, 0]
-                                    }}
-                                />
+                                <motion.div key={`wave-${i}`} className="absolute rounded-full bg-emerald-500/10 border-2 border-emerald-400/40 blur-xl shadow-[0_0_50px_rgba(16,185,129,0.3)]" style={{ width: '100%', height: '100%' }} initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1.1, opacity: [0, 0.8, 0] }} transition={{ duration: 3, repeat: Infinity, delay: (i / 15) * 3, ease: [0.11, 0, 0.5, 0] }} />
                             ))}
                         </div>
                         <div className="relative z-10 w-full h-full rounded-full overflow-hidden border-4 border-emerald-400 shadow-[0_0_30px_rgba(16,185,129,0.4)]">
-                            <img
-                                src="https://zhdgql66cifrjlez.public.blob.vercel-storage.com/profile.jpg"
-                                alt="Rishabh Singh Thakur"
-                                className="w-full h-full object-cover"
-                            />
+                            <img src="https://zhdgql66cifrjlez.public.blob.vercel-storage.com/profile.jpg" alt="Rishabh Singh Thakur" className="w-full h-full object-cover" />
                             <div className="absolute inset-0 bg-gradient-to-tr from-emerald-500/10 to-transparent"></div>
                         </div>
                     </motion.div>
                     <div className="flex gap-4">
-                        <div className="text-center">
-                            <div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={5} /></div>
-                            <div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Years of<br />experience</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={1} suffix="k+" /></div>
-                            <div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Stores<br />Automated</div>
-                        </div>
-                        <div className="text-center">
-                            <div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={28} /></div>
-                            <div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Years<br />Old</div>
-                        </div>
+                        <div className="text-center"><div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={5} /></div><div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Years of<br />experience</div></div>
+                        <div className="text-center"><div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={1} suffix="k+" /></div><div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Stores<br />Automated</div></div>
+                        <div className="text-center"><div className="text-xl font-bold text-white font-mono"><AnimatedCounter end={28} /></div><div className="text-[10px] text-zinc-400 uppercase tracking-wider mt-1 font-mono">Years<br />Old</div></div>
                     </div>
                 </div>
                 <div className="max-w-xl text-left shrink-0">
@@ -132,38 +78,17 @@ const MobileScreenContent = () => {
                         Helping businesses leverage AI and cloud infrastructure to automate workflows, reduce operational costs, and accelerate time-to-market.
                         <br /><br />
                         AI Cloud Engineer & SRE with <span className="text-emerald-400 font-semibold">around 5 years</span> of hands-on experience building scalable GCP infrastructure with HL7 FHIR compliance for <span className="text-emerald-400 font-semibold">1000+ SDM stores</span> across Canada. Built <span className="text-emerald-400 font-semibold">3 full stack AI Saas apps</span> with one production grade app with google auth, stripe payments and OWASP security integration.
-                        <motion.span
-                            animate={{ opacity: [0, 1, 0] }}
-                            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-                            className="inline-block w-[2px] h-[1.2em] ml-1 bg-emerald-400 align-middle"
-                        />
+                        <motion.span animate={{ opacity: [0, 1, 0] }} transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }} className="inline-block w-[2px] h-[1.2em] ml-1 bg-emerald-400 align-middle" />
                     </div>
                 </div>
                 <div className="flex flex-col items-center gap-3 w-full shrink-0">
-                    <motion.a
-                        href={RESUME_PDF}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="group relative px-6 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/50 rounded-lg overflow-hidden transition-all duration-300 flex items-center gap-2"
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                    >
+                    <motion.a href={RESUME_PDF} target="_blank" rel="noopener noreferrer" className="group relative px-6 py-2 bg-emerald-500/10 hover:bg-emerald-500/20 border border-emerald-500/50 rounded-lg overflow-hidden transition-all duration-300 flex items-center gap-2" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                         <div className="absolute inset-0 bg-emerald-400/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
-                        <span className="relative text-emerald-400 font-mono text-xs font-bold tracking-wider flex items-center gap-2">
-                            <span className="text-base">⬇</span> VIEW CV
-                        </span>
+                        <span className="relative text-emerald-400 font-mono text-xs font-bold tracking-wider flex items-center gap-2"><span className="text-base">⬇</span> VIEW CV</span>
                     </motion.a>
                     <div className="flex items-center gap-4">
                         {socialLinks.map((link, index) => (
-                            <motion.a
-                                key={index}
-                                href={link.href}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="p-2 rounded-full bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all duration-300 group"
-                                whileHover={{ scale: 1.1, rotate: 5 }}
-                                whileTap={{ scale: 0.9 }}
-                            >
+                            <motion.a key={index} href={link.href} target="_blank" rel="noopener noreferrer" className="p-2 rounded-full bg-slate-800/50 border border-slate-700 hover:border-emerald-500/50 hover:bg-emerald-500/10 transition-all duration-300 group" whileHover={{ scale: 1.1, rotate: 5 }} whileTap={{ scale: 0.9 }}>
                                 <link.icon className="w-5 h-5 text-slate-400 group-hover:text-emerald-400 transition-colors" />
                             </motion.a>
                         ))}
